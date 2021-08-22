@@ -7,6 +7,10 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import Login from './Login';
+import Profile  from './componanet/profile';
+import MyFavoriteBooks from './BestBooks'
+
 
 class App extends React.Component {
 
@@ -15,20 +19,29 @@ class App extends React.Component {
     return(
       <>
         <Router>
-          <IsLoadingAndError>
+          {/* <IsLoadingAndError> */}
             <Header />
             <Switch>
               <Route exact path="/">
                 {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
+                        
               </Route>
               {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
+                                                                       
+              <Route exact path="/profile">
+                <Profile/>
+              </Route>
+
             </Switch>
+            <Login/>
             <Footer />
-          </IsLoadingAndError>
+          {/* </IsLoadingAndError> */}
         </Router>
+
       </>
     );
+
   }
 }
 
-export default App;
+export default App; 
