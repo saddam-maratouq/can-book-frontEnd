@@ -39,6 +39,7 @@ class App extends React.Component {
                 <Profile/>
               </Route>
               <Login/>
+              
 
             </Switch>
             <Footer />
