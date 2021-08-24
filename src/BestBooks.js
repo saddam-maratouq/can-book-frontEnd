@@ -3,6 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './BestBooks.css';
 import axios from 'axios'
 import BookDeatls from './componanet/BookDeatls'
+import  {withAuth0}  from '@auth0/auth0-react';
+
+
 
 class MyFavoriteBooks extends React.Component {
   
@@ -18,8 +21,10 @@ class MyFavoriteBooks extends React.Component {
   
   
   componentDidMount= async () => { 
+console.log("hhhhhhhhhhhhhhhhhh")
+    const {user} = this.props.auth0;
 
-    let bookUrl = `${process.env.REACT_APP_SERVER}/books`
+    let bookUrl = `${process.env.REACT_APP_SERVER}/books?email=${user.email}`
 
     let BookData = await axios.get(bookUrl) 
 
@@ -49,4 +54,4 @@ class MyFavoriteBooks extends React.Component {
   }
 }
 
-export default MyFavoriteBooks; 
+export default withAuth0(MyFavoriteBooks); 

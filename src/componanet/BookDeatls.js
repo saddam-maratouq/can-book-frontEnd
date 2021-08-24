@@ -20,7 +20,9 @@ import Card from 'react-bootstrap/Card';
                          
                         <Card.Text>  title : {item.title}               </Card.Text>   
                         <Card.Text>  description : {item.description}     </Card.Text>                               
-                        <Card.Text>  email : {item.email}               </Card.Text>                               
+                        <Card.Text>  email : {item.email}               </Card.Text>    
+                        <Card.Text>  status : {item.statues}               </Card.Text>                               
+
 
                             
                          
