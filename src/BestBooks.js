@@ -1,6 +1,5 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import './BestBooks.css';
 import axios from 'axios'
 import BookDeatls from './componanet/BookDeatls'
@@ -11,7 +10,7 @@ class MyFavoriteBooks extends React.Component {
     super(props) 
     this.state = {
 
-      bookData : []
+      bookData : [] 
     }
 
 
@@ -29,18 +28,23 @@ class MyFavoriteBooks extends React.Component {
 
   }
 
-  
+   
           
 
   render() {
     return(
-      <Jumbotron>
+        <div>
         <h1>My Favorite Books</h1>
         <p>
           This is a collection of my favorite books
         </p>
-        <BookDeatls/>
-      </Jumbotron>
+       
+       <BookDeatls   
+
+        BookInfo={this.state.bookData} 
+        
+        />
+        </div>
     )
   }
 }

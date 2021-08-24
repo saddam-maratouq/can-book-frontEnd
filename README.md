@@ -43,3 +43,29 @@ Actual time needed to complete: 30 m
 # All task in lab 11 : 1:30 h  
 
 //////////////////////////////////////////////// 
+
+
+Name of feature: server mango 
+
+Estimate of time needed to complete: 30
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 45 m 
+
+Name of feature: front End render data from mango 
+
+Estimate of time needed to complete: 30
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 1:30 m
+
+**lab 12 finsh** 
+
+//////////////////////////////////////////////////  
+
