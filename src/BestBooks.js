@@ -5,7 +5,7 @@ import axios from 'axios'
 import BookDeatls from './componanet/BookDeatls'
 import  {withAuth0}  from '@auth0/auth0-react';
 
-
+import AddBookForm from './componanet/AddBookForm'
 
 class MyFavoriteBooks extends React.Component {
   
@@ -32,9 +32,44 @@ console.log("hhhhhhhhhhhhhhhhhh")
     this.setState({bookData: BookData.data});
 
   }
+////////////////////////////////////////////////////
+ 
 
-   
+
+    addBook = async (e) =>  {
+     
+      e.preventDefault();
+
+      const {user} = this.props.auth0;
+
+     
+     let bookDatas = {
+
+      title   : e.target.title.value,
+
+      description  :e.target.description.value,
+
+      st : e.target.st.value,
+
+       email : user.email   
+
+      };  
+  
+
+      let addBookData = await axios.post(`${process.env.REACT_APP_SERVER}/AddBook`,bookDatas)
+
+
+      console.log('sssssss',addBookData.data);
+
+      this.setState({bookData: addBookData.data}); //// to ubdate new book when I add and render again .... 
+
+      this.componentDidMount(); //////// why ???
+
+    }
+  
           
+        
+
 
   render() {
     return(
@@ -43,12 +78,18 @@ console.log("hhhhhhhhhhhhhhhhhh")
         <p>
           This is a collection of my favorite books
         </p>
+
+        <AddBookForm
+         addBookData={this.addBook}
+        />
        
        <BookDeatls   
 
-        BookInfo={this.state.bookData} 
+        BookInfo={this.state.bookData}  
         
         />
+
+     
         </div>
     )
   }
