@@ -19,54 +19,79 @@ class MyFavoriteBooks extends React.Component {
 
   }
   
+  //// note aregment very important dont forget  : read / creat / delete / update 
+
+  
   
   componentDidMount= async () => { 
-console.log("hhhhhhhhhhhhhhhhhh")
+console.log('alive didmount');
     const {user} = this.props.auth0;
 
     let bookUrl = `${process.env.REACT_APP_SERVER}/books?email=${user.email}`
 
     let BookData = await axios.get(bookUrl) 
 
-    console.log('ccccc',BookData.data); 
+    console.log('data from read',BookData.data); 
     this.setState({bookData: BookData.data});
 
   }
 ////////////////////////////////////////////////////
+
+
+addBook = async (e) =>  {
+     
+  e.preventDefault();
+
+  const {user} = this.props.auth0;
+
+ 
+ let bookDatas = {
+
+  title : e.target.title.value,
+
+  description : e.target.description.value,
+
+  statues : e.target.statues.value,
+
+   email : user.email   
+
+  };  
+
+
+  let addBookData = await axios.post(`${process.env.REACT_APP_SERVER}/AddBook`,bookDatas)
+
+
+  console.log('data from add',addBookData.data);
+
+ await  this.setState({bookData: addBookData.data}); //// to ubdate new book when I add and render again .... 
+
+  this.componentDidMount(); //////// why ???
+
+}
+
+ ///////////////////////////////////////////////
+
+
+
+DeletBook = async  (bookID) => {
+  const {user} = this.props.auth0;
+
+  let DeleteBook = await axios.delete(`${process.env.REACT_APP_SERVER}/deletBook/${bookID}?email=${user.email}`)  
+  
+  console.log('data from delet ',DeleteBook.data);
+
+   await this.setState   ( {  bookData : DeleteBook.data  }) 
+
+
+   this.componentDidMount();
+
+
+}
  
 
 
-    addBook = async (e) =>  {
-     
-      e.preventDefault();
 
-      const {user} = this.props.auth0;
-
-     
-     let bookDatas = {
-
-      title   : e.target.title.value,
-
-      description  :e.target.description.value,
-
-      st : e.target.st.value,
-
-       email : user.email   
-
-      };  
-  
-
-      let addBookData = await axios.post(`${process.env.REACT_APP_SERVER}/AddBook`,bookDatas)
-
-
-      console.log('sssssss',addBookData.data);
-
-      this.setState({bookData: addBookData.data}); //// to ubdate new book when I add and render again .... 
-
-      this.componentDidMount(); //////// why ???
-
-    }
-  
+   
           
         
 
@@ -80,12 +105,14 @@ console.log("hhhhhhhhhhhhhhhhhh")
         </p>
 
         <AddBookForm
-         addBookData={this.addBook}
+         addBookData={this.addBook} 
         />
        
        <BookDeatls   
 
         BookInfo={this.state.bookData}  
+
+        DeletBooks = {this.DeletBook}
         
         />
 
